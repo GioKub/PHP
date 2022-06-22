@@ -1,3 +1,4 @@
 #here are project steps taken to build full project
 
 1. create 2 tables in mysql
+
