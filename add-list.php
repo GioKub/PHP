@@ -82,10 +82,10 @@ if (isset($_POST['submit'])) {
         //redirect to the manage lists page
         header('location:' . SITEURL . 'manage-list.php');
     } else {
-        //redirect to the same page
-        header('location:' . SITEURL . 'add-list.php');
         //create session to save message
         $_SESSION['add_fail'] = 'failed to add list';
+        //redirect to the same page
+        header('location:' . SITEURL . 'add-list.php');
     }
 }
 ?>
