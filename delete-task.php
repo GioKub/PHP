@@ -8,7 +8,7 @@ if (isset($_GET['task_id'])) {
     //delete the task from the database
 
     //get the task_id value from URL
-    $list_id = $_GET['task_id'];
+    $task_id = $_GET['task_id'];
 
     //connect to the database
     $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD);

@@ -28,6 +28,7 @@ include('config/constants.php')
 
     <p>
         <?php
+        //check if session is set for 'add'
         if (isset($_SESSION['add'])) {
             echo $_SESSION['add'];
             unset($_SESSION['add']);
@@ -37,6 +38,12 @@ include('config/constants.php')
         if (isset($_SESSION['delete'])) {
             echo $_SESSION['delete'];
             unset($_SESSION['delete']);
+        }
+
+        //check if session is set for 'update'
+        if (isset($_SESSION['update'])) {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
         }
 
         //check if session is set for 'delete_fail'
@@ -94,7 +101,7 @@ include('config/constants.php')
                             <th><?php echo $priority ?></th>
                             <th><?php echo $deadline ?></th>
                             <th>
-                                <a href="#">Update</a>
+                                <a href="<?php echo SITEURL; ?>update-task.php?task_id=<?php echo $task_id; ?>">Update</a>
                                 <a href="<?php echo SITEURL; ?>delete-task.php?task_id=<?php echo $task_id; ?>">Delete</a>
                             </th>
                         </tr>
