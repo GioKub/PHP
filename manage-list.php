@@ -24,6 +24,24 @@ include('config/constants.php')
             //remove the message after displaying once
             unset($_SESSION['add']);
         }
+
+        //check if session is set for 'delete'
+        if (isset($_SESSION['delete'])) {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
+
+        //check if session is set for 'update
+        if (isset($_SESSION['update'])) {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
+
+        //check if session is set for 'delete_fail'
+        if (isset($_SESSION['delete_fail'])) {
+            echo $_SESSION['delete_fail'];
+            unset($_SESSION['delete_fail']);
+        }
         ?>
     </p>
 
@@ -73,8 +91,8 @@ include('config/constants.php')
                             <td><?php echo $sn++ ?></td>
                             <td><?php echo $list_name ?></td>
                             <td>
-                                <a href="#">Update</a>
-                                <a href="#">Delete</a>
+                                <a href="<?php echo SITEURL ?>update-list.php?list_id=<?php echo $list_id ?>">Update</a>
+                                <a href="<?php echo SITEURL ?>delete-list.php?list_id=<?php echo $list_id ?>">Delete</a>
                             </td>
                         </tr>
 

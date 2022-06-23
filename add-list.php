@@ -60,25 +60,11 @@ if (isset($_POST['submit'])) {
     $list_name = $_POST['list_name'];
     $list_description = $_POST['list_description'];
 
-
     //connect to database
     $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD);
 
-    //Check if succesfuly conned to db
-    /*
-    if ($conn == true) {
-        echo 'connected to db';
-    }
-    */
-
     //select database
     $db_select = mysqli_select_db($conn, DB_NAME);
-
-    //check if database succesfully selected
-    /*
-    if ($db_select == true) {
-        echo 'selceted db';
-    }*/
 
     // sql query to insert data into databse
     $sql = "INSERT INTO tbl_lists SET
@@ -97,7 +83,7 @@ if (isset($_POST['submit'])) {
         header('location:' . SITEURL . 'manage-list.php');
     } else {
         //redirect to the same page
-        header('location' . SITEURL . 'add-list.php');
+        header('location:' . SITEURL . 'add-list.php');
         //create session to save message
         $_SESSION['add_fail'] = 'failed to add list';
     }
