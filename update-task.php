@@ -181,6 +181,7 @@ if (isset($_POST['submit'])) {
     $sql3 = "UPDATE tbl_tasks SET
     task_name='$task_name',
     task_description='$task_description',
+    list_id = '$list_id',
     priority = '$priority',
     deadline = '$deadline'
     WHERE task_id='$task_id'";
