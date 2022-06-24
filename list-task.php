@@ -1,5 +1,6 @@
 <?php
-include('config/constants.php')
+include('config/constants.php');
+$list_id_url = $_GET['list-id']
 ?>
 
 <html>
@@ -9,16 +10,12 @@ include('config/constants.php')
 </head>
 
 <body>
-
     <h1>Task Manager</h1>
+
     <!-- menu starts here -->
     <div class="menu">
 
         <a href="<?php echo SITEURL ?>">Home</a>
-
-        <a href="#">To Do </a>
-        <a href="#">Doing</a>
-        <a href="#">Done</a>
 
         <?php
         //connect to databse
@@ -52,38 +49,10 @@ include('config/constants.php')
     </div>
     <!-- menu ends here -->
 
-    <!-- Task starts here -->
+    <div class="all-task">
 
-    <p>
-        <?php
-        //check if session is set for 'add'
-        if (isset($_SESSION['add'])) {
-            echo $_SESSION['add'];
-            unset($_SESSION['add']);
-        }
+        <a href="<?php echo SITEURL ?>add-task.php">add Task</a>
 
-        //check if session is set for 'delete'
-        if (isset($_SESSION['delete'])) {
-            echo $_SESSION['delete'];
-            unset($_SESSION['delete']);
-        }
-
-        //check if session is set for 'update'
-        if (isset($_SESSION['update'])) {
-            echo $_SESSION['update'];
-            unset($_SESSION['update']);
-        }
-
-        //check if session is set for 'delete_fail'
-        if (isset($_SESSION['delete_fail'])) {
-            echo $_SESSION['delete_fail'];
-            unset($_SESSION['delete_fail']);
-        }
-        ?>
-    </p>
-
-    <div class="all-tasks">
-        <a href="<?php echo SITEURL ?>add-task.php">Add Task</a>
         <table>
             <tr>
                 <th>S.N.</th>
@@ -99,14 +68,14 @@ include('config/constants.php')
             //select database
             $db_select = mysqli_select_db($conn, DB_NAME);
 
-            //sql query to get data from database
-            $sql = 'SELECT * FROM tbl_tasks';
+            //sql query to displat tasks by list select
+            $sql = "SELECT * FROM tbl_tasks WHERE list_id=$list_id_url";
 
             //execute query
             $res = mysqli_query($conn, $sql);
 
             //check whether query executed succesfully or not
-            if ($res == true) {
+            if ($res == true) { //display the tasks based on list
 
                 //count the rows of data in database
                 $count_rows = mysqli_num_rows($res);
@@ -139,15 +108,14 @@ include('config/constants.php')
                 } else {
                     ?>
                     <tr>
-                        <td colspan="5">no task added yet</td>
+                        <td colspan="5">no task added on this list</td>
                     </tr>
             <?php
                 }
             }
             ?>
-
         </table>
+
     </div>
-    <!-- Task ends here -->
 </body>
 <html>
